@@ -15,4 +15,7 @@ massive(CONNECTION_STRING)
 })
 .catch(err => console.log(err))
 
+//ENDPOINTS
+app.get('/api/inventory', ctrl.getInventory)
+
 app.listen(SERVER_PORT, console.log(`Running on Port ${SERVER_PORT}`))

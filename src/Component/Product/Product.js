@@ -1,12 +1,17 @@
 import React from 'react'
 
-function Product(){
+import './Product.css'
+
+class Product extends React.Component {
+
+    render(){
     return (
-        <div>
-            Product
+        <div className="Product">
+
         </div>
     )
 
+    }
 }
 
 export default Product

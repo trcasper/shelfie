@@ -6,16 +6,21 @@ import Dashboard from './Component/Dashboard/Dashboard'
 import Product from './Component/Product/Product'
 import Form from './Component/Form/Form'
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Dashboard />
-      <Product />
-      <Form />
+class App extends React.Component {
+
+
+
+  render() {
+   return (
+     <div className="App">
+       <Header />
+        <Dashboard />
+        <Product />
+       <Form />
 
     </div>
   );
+}
 }
 
 export default App;
