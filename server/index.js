@@ -17,5 +17,7 @@ massive(CONNECTION_STRING)
 
 //ENDPOINTS
 app.get('/api/inventory', ctrl.getInventory)
+app.post('/api/inventory', ctrl.createProduct)
+
 
 app.listen(SERVER_PORT, console.log(`Running on Port ${SERVER_PORT}`))

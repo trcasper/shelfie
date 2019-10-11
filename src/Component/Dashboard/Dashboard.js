@@ -1,38 +1,65 @@
 import React from "react";
 
-import "./Dashboard.css";
-import Form from "../Form/Form";
 
 import axios from "axios";
+import Form from "../Form/Form";
+import "./Dashboard.css";
+import { FORMERR } from "dns";
+
+
 
 class Dashboard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      product: [],
+      inventory: [],
       input: ""
     };
   }
 
+  componentDidMount(){
+    this.getInventory();
+    }
+
+    getInventory = () => {
+        axios.get('/api/inventory').then(res => {
+            console.log(res.data)
+            this.setState({
+                inventory: res.data
+            })
+        })
+    }
+
+    createProduct = () => {
+        axios.post("/api/inventory").then(res =>
+          this.setState({
+            list: res.data,
+            input: ""
+          })
+        );
+      };
+
+
+
+  
+
+
+
   render() {
-    return (
-      <section>
-        <div>
-          {this.state.product.map((element, index) => {
-            return (
-              <Form
-                element={element}
-                index={index}
-                key={`Product ${index}`}
-                delete={this.delete}
-                updateState={this.updateState}
-              />
-            );
-          })}
-        </div>
-      </section>
-    );
+     const mappedInventory = this.state.inventory.map(product, i) => {
+        return (
+            <FORM
+            key={i}
+            product={product}
+            createProduct={this.createProduct}
+            getInventory={this.getInventory}
+            />
+        )
+        }
+
+    
   }
+
 }
 export default Dashboard;
