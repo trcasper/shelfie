@@ -4,7 +4,7 @@ import React from "react";
 import axios from "axios";
 import Form from "../Form/Form";
 import "./Dashboard.css";
-import { FORMERR } from "dns";
+
 
 
 
@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
 
     this.state = {
       inventory: [],
-      input: ""
+      product: ""
     };
   }
 
@@ -29,37 +29,49 @@ class Dashboard extends React.Component {
                 inventory: res.data
             })
         })
+        .catch(err => console.log(err))
     }
 
     createProduct = () => {
-        axios.post("/api/inventory").then(res =>
-          this.setState({
-            list: res.data,
-            input: ""
-          })
-        );
-      };
+        const newProduct = {
+            product: this.state.product
+        }
+        axios.post('/api/inventory', newProduct).then(res => {
+            this.setState({
+                inventory: res.data
+            })
+        })
+        .catch(err => console.log(err))
 
-
+    }
 
   
 
 
 
   render() {
-     const mappedInventory = this.state.inventory.map(product, i) => {
+     const mappedInventory = this.state.inventory.map((product, i) => {
         return (
-            <FORM
+            <Form
             key={i}
             product={product}
             createProduct={this.createProduct}
-            getInventory={this.getInventory}
-            />
+            getInventory={this.getInventory}/>
         )
-        }
+     })
+        
+        return(
+            <div>
 
+            </div>
+        )
+     }
     
-  }
+     
+  
 
-}
+     
+  
+
+};
 export default Dashboard;
