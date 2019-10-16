@@ -6,7 +6,17 @@ import Dashboard from './Component/Dashboard/Dashboard'
 import Product from './Component/Product/Product'
 import Form from './Component/Form/Form'
 
+
+
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      inventory: [],
+      
+    }
+  }
 
 
 
@@ -15,7 +25,6 @@ class App extends React.Component {
      <div className="App">
        <Header />
         <Dashboard />
-        <Product />
        <Form />
 
     </div>

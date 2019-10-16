@@ -3,18 +3,23 @@ import React from "react";
 
 import axios from "axios";
 import Form from "../Form/Form";
+import Product from "../Product/Product";
 import "./Dashboard.css";
 
 
 
 
+
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       inventory: [],
-      product: ""
+      image: "",
+      name: "",
+      price: 0,
+      edit: false,
     };
   }
 
@@ -24,7 +29,7 @@ class Dashboard extends React.Component {
 
     getInventory = () => {
         axios.get('/api/inventory').then(res => {
-            console.log(res.data)
+
             this.setState({
                 inventory: res.data
             })
@@ -32,41 +37,35 @@ class Dashboard extends React.Component {
         .catch(err => console.log(err))
     }
 
-    createProduct = () => {
-        const newProduct = {
-            product: this.state.product
-        }
-        axios.post('/api/inventory', newProduct).then(res => {
-            this.setState({
-                inventory: res.data
-            })
+    handleInput = (val) => {
+        this.setState({
+            image: val,
+            name: val,
+            price: val
         })
-        .catch(err => console.log(err))
-
     }
 
-  
 
 
+    updateInventory = (data) => {
+        this.setState({
+            inventory: data,
+        })
+    }
 
   render() {
-     const mappedInventory = this.state.inventory.map((product, i) => {
-        return (
-            <Form
-            key={i}
-            product={product}
-            createProduct={this.createProduct}
-            getInventory={this.getInventory}/>
-        )
-     })
-        
-        return(
-            <div>
+      let {inventory, image, name, price } = this.state;
 
-            </div>
-        )
-     }
-    
+      return (
+          <div>
+              {inventory.map((product, index) => {
+                  console.log(product)
+                 return  <Product product={product} index={index} key={product.id}/>
+              })}
+          </div>
+      )
+  }
+
      
   
 

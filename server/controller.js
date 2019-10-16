@@ -15,9 +15,9 @@ module.exports = {
 
     createProduct: (req, res) => {
         const db = req.app.get('db')
-        const {name, price, img} = req.body
+        const {img, name, price} = req.body
 
-        db.create_product([name, price, img])
+        db.create_product([img, name, price])
         .then(product => res.status(200).send(product))
         .catch(err => {
             res.status(500).send({errormessage: 'Something went Wrong!'})

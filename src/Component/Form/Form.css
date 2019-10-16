@@ -49,4 +49,22 @@ position:fixed;
 top:150px;
 vertical-align:baseline;
 width:450px;
+justify-content: center;
+align-items: center;
 }
+
+.image-box {
+    background-color: white;
+    width: 75%;
+    height: 25vh;
+    margin-bottom: 20px;
+
+}
+
+.input-box {
+    background-color: rgb(28, 141, 82);
+    height: 8vh;
+    width: 95%;
+    
+}
+
